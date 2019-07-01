@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        tools:context=".MainActivity"
+        android:background="@color/colorPrimary">
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".MainActivity"
+                android:background="@color/colorPrimary">
+
+            <android.support.v7.widget.AppCompatImageView android:id="@+id/logo"
+                                                          android:layout_width="48dp"
+                                                          android:layout_height="48dp"
+                                                          android:src="@drawable/swp_logo_small"
+                                                          android:layout_marginTop="16dp"
+                                                          app:layout_constraintBottom_toBottomOf="parent"
+                                                          app:layout_constraintLeft_toLeftOf="parent"
+                                                          app:layout_constraintRight_toRightOf="parent"
+                                                          app:layout_constraintTop_toTopOf="parent"
+                                                          app:layout_constraintVertical_bias="0.0"
+                                                          app:layout_constraintHorizontal_bias="0.05"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/profile_image"
+                                                          android:layout_width="48dp"
+                                                          android:layout_height="48dp"
+                                                          app:civ_border_width="2dp"
+                                                          app:civ_border_color="#FFFFFFFF"
+                                                          android:src="@drawable/swp_logo_small"
+                                                          android:layout_marginTop="16dp"
+                                                          app:layout_constraintBottom_toBottomOf="parent"
+                                                          app:layout_constraintLeft_toLeftOf="parent"
+                                                          app:layout_constraintRight_toRightOf="parent"
+                                                          app:layout_constraintTop_toTopOf="parent"
+                                                          app:layout_constraintVertical_bias="0.0"
+                                                          app:layout_constraintHorizontal_bias="0.95"/>
+
+            <com.jonahstarling.stravaweeklyplanner.DayRow android:id="@+id/monday_row"
+                                                          android:layout_width="match_parent"
+                                                          android:layout_height="wrap_content"
+                                                          android:layout_marginTop="8dp"
+                                                          android:layout_marginStart="8dp"
+                                                          android:layout_marginEnd="8dp"
+                                                          android:layout_marginBottom="0dp"
+                                                          app:day_title="Monday"
+                                                          android:alpha="0.0"
+                                                          app:layout_constraintBottom_toBottomOf="parent"
+                                                          app:layout_constraintLeft_toLeftOf="parent"
+                                                          app:layout_constraintRight_toRightOf="parent"
+                                                          app:layout_constraintTop_toBottomOf="@id/logo"
+                                                          app:layout_constraintVertical_bias="0.1"/>
+
+            <com.jonahstarling.stravaweeklyplanner.DayRow android:id="@+id/tuesday_row"
+                                                          android:layout_width="match_parent"
+                                                          android:layout_height="wrap_content"
+                                                          android:layout_marginTop="8dp"
+                                                          android:layout_marginStart="8dp"
+                                                          android:layout_marginEnd="8dp"
+                                                          android:layout_marginBottom="0dp"
+                                                          app:day_title="Tuesday"
+                                                          android:alpha="0.0"
+                                                          app:layout_constraintBottom_toBottomOf="parent"
+                                                          app:layout_constraintLeft_toLeftOf="parent"
+                                                          app:layout_constraintRight_toRightOf="parent"
+                                                          app:layout_constraintTop_toBottomOf="@id/monday_row"
+                                                          app:layout_constraintVertical_bias="0.0"/>
+
+            <com.jonahstarling.stravaweeklyplanner.DayRow android:id="@+id/wednesday_row"
+                                                          android:layout_width="match_parent"
+                                                          android:layout_height="wrap_content"
+                                                          android:layout_marginTop="8dp"
+                                                          android:layout_marginStart="8dp"
+                                                          android:layout_marginEnd="8dp"
+                                                          android:layout_marginBottom="0dp"
+                                                          app:day_title="Wednesday"
+                                                          android:alpha="0.0"
+                                                          app:layout_constraintBottom_toBottomOf="parent"
+                                                          app:layout_constraintLeft_toLeftOf="parent"
+                                                          app:layout_constraintRight_toRightOf="parent"
+                                                          app:layout_constraintTop_toBottomOf="@id/tuesday_row"
+                                                          app:layout_constraintVertical_bias="0.0"/>
+
+            <com.jonahstarling.stravaweeklyplanner.DayRow android:id="@+id/thursday_row"
+                                                          android:layout_width="match_parent"
+                                                          android:layout_height="wrap_content"
+                                                          android:layout_marginTop="8dp"
+                                                          android:layout_marginStart="8dp"
+                                                          android:layout_marginEnd="8dp"
+                                                          android:layout_marginBottom="0dp"
+                                                          app:day_title="Thursday"
+                                                          android:alpha="0.0"
+                                                          app:layout_constraintBottom_toBottomOf="parent"
+                                                          app:layout_constraintLeft_toLeftOf="parent"
+                                                          app:layout_constraintRight_toRightOf="parent"
+                                                          app:layout_constraintTop_toBottomOf="@id/wednesday_row"
+                                                          app:layout_constraintVertical_bias="0.0"/>
+
+            <com.jonahstarling.stravaweeklyplanner.DayRow android:id="@+id/friday_row"
+                                                          android:layout_width="match_parent"
+                                                          android:layout_height="wrap_content"
+                                                          android:layout_marginTop="8dp"
+                                                          android:layout_marginStart="8dp"
+                                                          android:layout_marginEnd="8dp"
+                                                          android:layout_marginBottom="0dp"
+                                                          app:day_title="Friday"
+                                                          android:alpha="0.0"
+                                                          app:layout_constraintBottom_toBottomOf="parent"
+                                                          app:layout_constraintLeft_toLeftOf="parent"
+                                                          app:layout_constraintRight_toRightOf="parent"
+                                                          app:layout_constraintTop_toBottomOf="@id/thursday_row"
+                                                          app:layout_constraintVertical_bias="0.0"/>
+
+            <com.jonahstarling.stravaweeklyplanner.DayRow android:id="@+id/saturday_row"
+                                                          android:layout_width="match_parent"
+                                                          android:layout_height="wrap_content"
+                                                          android:layout_marginTop="8dp"
+                                                          android:layout_marginStart="8dp"
+                                                          android:layout_marginEnd="8dp"
+                                                          android:layout_marginBottom="0dp"
+                                                          app:day_title="Saturday"
+                                                          android:alpha="0.0"
+                                                          app:layout_constraintBottom_toBottomOf="parent"
+                                                          app:layout_constraintLeft_toLeftOf="parent"
+                                                          app:layout_constraintRight_toRightOf="parent"
+                                                          app:layout_constraintTop_toBottomOf="@id/friday_row"
+                                                          app:layout_constraintVertical_bias="0.0"/>
+
+            <com.jonahstarling.stravaweeklyplanner.DayRow android:id="@+id/sunday_row"
+                                                          android:layout_width="match_parent"
+                                                          android:layout_height="wrap_content"
+                                                          android:layout_marginTop="8dp"
+                                                          android:layout_marginStart="8dp"
+                                                          android:layout_marginEnd="8dp"
+                                                          android:layout_marginBottom="8dp"
+                                                          app:day_title="Sunday"
+                                                          android:alpha="0.0"
+                                                          app:layout_constraintBottom_toBottomOf="parent"
+                                                          app:layout_constraintLeft_toLeftOf="parent"
+                                                          app:layout_constraintRight_toRightOf="parent"
+                                                          app:layout_constraintTop_toBottomOf="@id/saturday_row"
+                                                          app:layout_constraintVertical_bias="0.0"/>
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
