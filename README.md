@@ -44,7 +44,7 @@ This section will change over time but currently this is what we are looking lik
 - Firebase
 
 ## The name
-I don't have a good name for this app sooooo let's see what we can come up with. Can't be anything with the word Strava due to the brand guidelines. It doesn't deserve a creative made up word because let's be honest, it's a glorified to-do list. So how about we just take the first letter from some of the words that describe this and maybe we'll get something good. Like WiMP (Weekly Mileage Planner). Haha I got nothing so that's gonna have to do because it's better than SWaP (Strava Weekly Planner). Whatever. On to the logistics of this repo.
+I don't have a good name for this app sooooo let's see what we can come up with. Can't be anything with the word Strava due to the brand guidelines. It doesn't deserve a creative made up word because let's be honest, it's a glorified to-do list. So how about we just take the first letter from some of the words that describe this and maybe we'll get something good. Like WiMP (Weekly Mileage Planner). Haha I got nothing so that's gonna have to do because it's better than SWaP (Strava Weekly Planner). Whatever.
 
 ## Outro
 
