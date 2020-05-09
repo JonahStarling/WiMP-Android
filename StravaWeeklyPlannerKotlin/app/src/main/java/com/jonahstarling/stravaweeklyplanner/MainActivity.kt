@@ -38,7 +38,6 @@ class MainActivity: AppCompatActivity() {
     fun replaceFragment(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment, tag)
-            .addToBackStack("")
             .commit()
     }
 }
