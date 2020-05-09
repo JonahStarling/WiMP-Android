@@ -1,24 +1,14 @@
 package com.jonahstarling.stravaweeklyplanner
 
 import android.animation.ValueAnimator
-import android.app.Activity
-import android.content.Context
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.graphics.Rect
 import android.preference.PreferenceManager
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.ContextCompat.getSystemService
-import android.util.Log
 import android.view.LayoutInflater
-import android.widget.EditText
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
-import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
 import com.android.volley.Response
