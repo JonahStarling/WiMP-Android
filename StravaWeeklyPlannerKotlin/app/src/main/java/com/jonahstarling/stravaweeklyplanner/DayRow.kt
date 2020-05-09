@@ -4,6 +4,7 @@ import android.content.Context
 import android.preference.PreferenceManager
 import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
+import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
@@ -45,6 +46,7 @@ class DayRow : ConstraintLayout {
 
         val dayTitle = findViewById<TextView>(R.id.day_title)
         val goalInput = findViewById<EditText>(R.id.goal_input)
+        goalInput.onFocusChangeListener = InputFocusChangeListener()
 
         val ta = context.obtainStyledAttributes(attributeSet, R.styleable.DayRow)
         date = ta.getText(R.styleable.DayRow_day_title).toString()
@@ -105,5 +107,25 @@ class DayRow : ConstraintLayout {
         // TODO: Set stat box three to send the user to an activity from that day on strava
 
         invalidate()
+    }
+
+    fun hideKeyboard(view: View) {
+        context?.let {
+            val inputMethodManager = ContextCompat.getSystemService(
+                it,
+                InputMethodManager::class.java
+            )!!
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
+    inner class InputFocusChangeListener: View.OnFocusChangeListener {
+        override fun onFocusChange(v: View?, hasFocus: Boolean) {
+            if (!hasFocus) {
+                v?.let {
+                    hideKeyboard(it)
+                }
+            }
+        }
     }
 }

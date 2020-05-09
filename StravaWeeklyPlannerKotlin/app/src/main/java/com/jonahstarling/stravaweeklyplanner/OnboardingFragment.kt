@@ -1,31 +1,36 @@
 package com.jonahstarling.stravaweeklyplanner
 
 import android.animation.ValueAnimator
-import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.preference.PreferenceManager
 import android.support.constraint.ConstraintLayout
+import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 
-class OnboardingActivity : AppCompatActivity() {
+class OnboardingFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_onboarding)
-        val profileImage = findViewById<CircleImageView>(R.id.profile_image)
-        val onboardingText = findViewById<TextView>(R.id.onboarding_text)
-        val tapToStartText = findViewById<TextView>(R.id.tap_to_start)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+        inflater.inflate(R.layout.fragment_onboarding, container, false)
 
-        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val profileImage = view.findViewById<CircleImageView>(R.id.profile_image)
+        val onboardingText = view.findViewById<TextView>(R.id.onboarding_text)
+        val tapToStartText = view.findViewById<TextView>(R.id.tap_to_start)
+
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
         val profile = preferences.getString("profile", "")
         val name = preferences.getString("first_name", "")
 
         if (!profile.isNullOrEmpty()) {
-            Glide.with(this@OnboardingActivity).load(profile).into(profileImage)
+            Glide.with(this@OnboardingFragment).load(profile).into(profileImage)
         }
 
         var welcomeText = "Welcome"
@@ -60,12 +65,14 @@ class OnboardingActivity : AppCompatActivity() {
         }
         tapToStartAnimator.start()
 
-        findViewById<ConstraintLayout>(R.id.onboarding).setOnClickListener {
-            val intent = Intent(this@OnboardingActivity, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
-            startActivity(intent)
+        view.findViewById<ConstraintLayout>(R.id.onboarding).setOnClickListener {
+            (activity as MainActivity).replaceFragment(MainFragment.newInstance(), MainFragment.TAG)
         }
-
     }
 
+    companion object {
+        val TAG = OnboardingFragment::class.java.simpleName
+
+        fun newInstance() = OnboardingFragment()
+    }
 }
