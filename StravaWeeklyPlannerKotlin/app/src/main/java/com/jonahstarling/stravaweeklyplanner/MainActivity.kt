@@ -2,13 +2,11 @@ package com.jonahstarling.stravaweeklyplanner
 
 import android.animation.ValueAnimator
 import android.content.Context
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.graphics.Rect
 import android.preference.PreferenceManager
 import android.support.constraint.ConstraintLayout
-import android.util.Log
 import android.widget.EditText
 import android.view.MotionEvent
 import android.view.animation.LinearInterpolator
@@ -115,7 +113,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun parseActivities(activities: JSONArray) {
-        var thisWeeksActivities = HashMap<String, JSONArray>()
+        val thisWeeksActivities = HashMap<String, JSONArray>()
         thisWeeksActivities["Monday"] = JSONArray()
         thisWeeksActivities["Tuesday"] = JSONArray()
         thisWeeksActivities["Wednesday"] = JSONArray()
@@ -124,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         thisWeeksActivities["Saturday"] = JSONArray()
         thisWeeksActivities["Sunday"] = JSONArray()
 
-        var calendar = Calendar.getInstance()
+        val calendar = Calendar.getInstance()
 
         calendar.set(Calendar.HOUR_OF_DAY, 0)
         calendar.clear(Calendar.MINUTE)
@@ -202,7 +200,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculateDailyTotals(dayActivities: JSONArray): HashMap<String, String> {
-        var dailyTotals = HashMap<String, String>()
+        val dailyTotals = HashMap<String, String>()
         var mileage = 0L
         var time = 0L
         var climb = 0.0f
@@ -215,7 +213,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         var mileageString = "0"
-        var mileageInKm = mileage / 1000.0f
+        val mileageInKm = mileage / 1000.0f
         when {
             mileageInKm > 100.0f -> mileageString = mileageInKm.roundToInt().toString()
             mileageInKm > 10.0f -> mileageString = "%.1f".format(mileageInKm)
