@@ -11,6 +11,7 @@ import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.ContextCompat.getSystemService
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.EditText
 import android.view.MotionEvent
@@ -199,13 +200,19 @@ class MainFragment : Fragment() {
         var mileage = 0L
         var time = 0L
         var climb = 0.0f
+        var activityUrl = ""
 
-        for (i in 0 until dayActivities.length()) {
-            val activity = dayActivities[i] as JSONObject
-            mileage += activity.getLong("distance")
-            time += activity.getLong("moving_time")
-            climb += activity.getDouble("total_elevation_gain").toFloat()
+        if (dayActivities.length() > 0) {
+            val id = (dayActivities[0] as JSONObject).getLong("id")
+            activityUrl = "https://www.strava.com/activities/$id"
+            for (i in 0 until dayActivities.length()) {
+                val activity = dayActivities[i] as JSONObject
+                mileage += activity.getLong("distance")
+                time += activity.getLong("moving_time")
+                climb += activity.getDouble("total_elevation_gain").toFloat()
+            }
         }
+
 
         var mileageString = "0"
         val mileageInKm = mileage / 1000.0f
@@ -218,6 +225,7 @@ class MainFragment : Fragment() {
         dailyTotals["actualMileage"] = mileageString
         dailyTotals["statBoxOne"] = "${time / 60}m ${time % 60}s"
         dailyTotals["statBoxTwo"] = "${climb}m"
+        dailyTotals["activityUrl"] = activityUrl
 
         return dailyTotals
     }

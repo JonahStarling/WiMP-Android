@@ -1,10 +1,13 @@
 package com.jonahstarling.stravaweeklyplanner
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.preference.PreferenceManager
 import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
 import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.startActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
@@ -104,7 +107,13 @@ class DayRow : ConstraintLayout {
         actualMileage.setText(data["actualMileage"])
         statBoxOne.text = data["statBoxOne"]
         statBoxTwo.text = data["statBoxTwo"]
-        // TODO: Set stat box three to send the user to an activity from that day on strava
+        statBoxThree.setOnClickListener {
+            val activityUrl = data["activityUrl"]
+            if (activityUrl != null && activityUrl != "") {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(activityUrl))
+                startActivity(context, browserIntent, null)
+            }
+        }
 
         invalidate()
     }
