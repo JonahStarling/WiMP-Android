@@ -63,6 +63,8 @@ class MainFragment : Fragment() {
             Glide.with(this@MainFragment).load(profile).into(profileImage)
         }
 
+        logoImage.setOnClickListener { logout() }
+
         val mainAnimator = ValueAnimator.ofFloat(0.0f, 1.0f)
         mainAnimator.duration = 500L
         mainAnimator.startDelay = 500L
@@ -218,6 +220,12 @@ class MainFragment : Fragment() {
         dailyTotals["statBoxTwo"] = "${climb}m"
 
         return dailyTotals
+    }
+
+    private fun logout() {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        preferences.edit().clear().apply()
+        (activity as MainActivity).replaceFragment(LoginFragment.newInstance(), LoginFragment.TAG)
     }
 
     companion object {
