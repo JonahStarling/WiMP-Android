@@ -1,6 +1,10 @@
 package com.jonahstarling.stravaweeklyplanner
 
 import android.animation.ValueAnimator
+import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +22,7 @@ import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.help_dialog.*
+import kotlinx.android.synthetic.main.settings_dialog.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.time.LocalDate
@@ -30,6 +35,11 @@ import kotlin.math.roundToInt
 
 
 class MainFragment : Fragment() {
+
+    var profile: String? = null
+    var id: String? = null
+    var accessToken: String? = null
+    private var preferences: SharedPreferences? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_main, container, false)
@@ -47,18 +57,27 @@ class MainFragment : Fragment() {
         val saturday = view.findViewById<DayRow>(R.id.saturday_row)
         val sunday = view.findViewById<DayRow>(R.id.sunday_row)
 
-        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val profile = preferences.getString("profile", "")
-        val id = preferences.getString("athlete_id", "") ?: ""
-        val accessToken = preferences.getString("access_token", "") ?: ""
+        preferences = PreferenceManager.getDefaultSharedPreferences(context)
+
+        profile = preferences?.getString("profile", "")
+        id = preferences?.getString("athlete_id", "") ?: ""
+        accessToken = preferences?.getString("access_token", "") ?: ""
 
         if (!profile.isNullOrEmpty()) {
             Glide.with(this@MainFragment).load(profile).into(profileImage)
         }
 
         logoImage.setOnClickListener { showHelpDialog() }
-        fadedBackground.setOnClickListener { hideHelpDialog() }
+        fadedBackgroundHelp.setOnClickListener { hideHelpDialog() }
         dismissHelp.setOnClickListener { hideHelpDialog() }
+        helpAbout.setOnClickListener { navigateToMediumPost() }
+
+        profileImage.setOnClickListener { showSettingsDialog() }
+        fadedBackgroundSettings.setOnClickListener { hideSettingsDialog() }
+        dismissSettings.setOnClickListener { hideSettingsDialog() }
+        logoutButton.setOnClickListener { logout() }
+        measurementMile.setOnClickListener { milesSelected() }
+        measurementKilometer.setOnClickListener { kilometerSelected() }
 
         val mainAnimator = ValueAnimator.ofFloat(0.0f, 1.0f)
         mainAnimator.duration = 500L
@@ -79,7 +98,30 @@ class MainFragment : Fragment() {
         }
         mainAnimator.start()
 
-        fetchAthletesActivities(id, accessToken)
+        refresh()
+    }
+
+    private fun showSettingsDialog() {
+        settingsDialog.visibility = View.VISIBLE
+        if (!profile.isNullOrEmpty()) {
+            Glide.with(this@MainFragment).load(profile).into(settingsProfileImage)
+        }
+        val isMeasurementPreferenceMiles = preferences?.getBoolean("isMeasurementPreferenceMiles", true) ?: true
+        if (isMeasurementPreferenceMiles) {
+            measurementMile.setBackgroundColor(resources.getColor(R.color.colorPrimary, activity?.theme))
+            measurementMile.setTextColor(Color.WHITE)
+            measurementKilometer.setBackgroundColor(Color.WHITE)
+            measurementKilometer.setTextColor(resources.getColor(R.color.colorText, activity?.theme))
+        } else {
+            measurementMile.setBackgroundColor(Color.WHITE)
+            measurementMile.setTextColor(resources.getColor(R.color.colorText, activity?.theme))
+            measurementKilometer.setBackgroundColor(resources.getColor(R.color.colorPrimary, activity?.theme))
+            measurementKilometer.setTextColor(Color.WHITE)
+        }
+    }
+
+    private fun hideSettingsDialog() {
+        settingsDialog.visibility = View.GONE
     }
 
     private fun showHelpDialog() {
@@ -88,6 +130,40 @@ class MainFragment : Fragment() {
 
     private fun hideHelpDialog() {
         helpDialog.visibility = View.GONE
+    }
+
+    private fun navigateToMediumPost() {
+        // TODO: Update with this app's Medium post friend link
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://medium.com/@starling.jonah/artistic-style-transfer-with-tensorflow-lite-on-android-943af9ca28d8?source=friends_link&sk=8c83cf644c459cdac87242425cc24639"))
+        startActivity(browserIntent)
+    }
+
+    private fun milesSelected() {
+        measurementMile.setBackgroundColor(resources.getColor(R.color.colorPrimary, activity?.theme))
+        measurementMile.setTextColor(Color.WHITE)
+        measurementKilometer.setBackgroundColor(resources.getColor(R.color.white, activity?.theme))
+        measurementKilometer.setTextColor(resources.getColor(R.color.colorText, activity?.theme))
+        preferences?.edit()?.putBoolean("isMeasurementPreferenceMiles", true)?.apply().apply {
+            refresh()
+        }
+    }
+
+    private fun kilometerSelected() {
+        measurementMile.setBackgroundColor(resources.getColor(R.color.white, activity?.theme))
+        measurementMile.setTextColor(resources.getColor(R.color.colorText, activity?.theme))
+        measurementKilometer.setBackgroundColor(resources.getColor(R.color.colorPrimary, activity?.theme))
+        measurementKilometer.setTextColor(Color.WHITE)
+        preferences?.edit()?.putBoolean("isMeasurementPreferenceMiles", false)?.apply().apply {
+            refresh()
+        }
+    }
+
+    private fun refresh() {
+        id?.let { id ->
+            accessToken?.let { accessToken ->
+                fetchAthletesActivities(id, accessToken)
+            } ?: logout()
+        } ?: logout()
     }
 
     private fun fetchAthletesActivities(id: String, accessToken: String) {
@@ -201,7 +277,7 @@ class MainFragment : Fragment() {
         val dailyTotals = HashMap<String, String>()
         var mileage = 0L
         var time = 0L
-        var climb = 0.0f
+        var climb = 0.0
         var activityUrl = ""
 
         if (dayActivities.length() > 0) {
@@ -211,17 +287,22 @@ class MainFragment : Fragment() {
                 val activity = dayActivities[i] as JSONObject
                 mileage += activity.getLong("distance")
                 time += activity.getLong("moving_time")
-                climb += activity.getDouble("total_elevation_gain").toFloat()
+                climb += activity.getDouble("total_elevation_gain")
             }
         }
 
 
         var mileageString = "0"
-        val mileageInKm = mileage / 1000.0f
+        var mileageConverted: Double = mileage / 1000.0
+        val isMeasurementPreferenceMiles = preferences?.getBoolean("isMeasurementPreferenceMiles", true) ?: true
+        if (isMeasurementPreferenceMiles) {
+            mileageConverted *= 0.621371
+            climb *= 3.28084
+        }
         when {
-            mileageInKm > 100.0f -> mileageString = mileageInKm.roundToInt().toString()
-            mileageInKm > 10.0f -> mileageString = "%.1f".format(mileageInKm)
-            mileageInKm > 0.0f -> mileageString = "%.2f".format(mileageInKm)
+            mileageConverted > 100.0 -> mileageString = mileageConverted.roundToInt().toString()
+            mileageConverted > 10.0 -> mileageString = "%.1f".format(mileageConverted)
+            mileageConverted > 0.0 -> mileageString = "%.2f".format(mileageConverted)
         }
 
         dailyTotals["actualMileage"] = mileageString
@@ -233,8 +314,7 @@ class MainFragment : Fragment() {
     }
 
     private fun logout() {
-        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        preferences.edit().clear().apply()
+        preferences?.edit()?.clear()?.apply()
         (activity as MainActivity).replaceFragment(LoginFragment.newInstance(), LoginFragment.TAG)
     }
 

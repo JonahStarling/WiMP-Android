@@ -6,7 +6,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <View
-            android:id="@+id/fadedBackground"
+            android:id="@+id/fadedBackgroundHelp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#222"
@@ -74,6 +74,7 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:text="@string/help_dismiss"
                     android:textColor="#222"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintTop_toBottomOf="@id/helpAbout"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>

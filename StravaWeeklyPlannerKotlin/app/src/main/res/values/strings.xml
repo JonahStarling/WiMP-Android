@@ -7,13 +7,20 @@
     <string name="created_by_jonah_starling">Created by Jonah Starling</string>
     <string name="redirect_uri">https://swp.jonahstarling.com</string>
     <string name="tap_to_get_started">tap to get started</string>
-    <string name="view">View on Strava</string>
+    <string name="view"><u>View on Strava</u></string>
     <string name="_0">0</string>
     <string name="goal">Goal</string>
     <string name="actual">Actual</string>
 
     <string name="help_title">What\'s going on?</string>
-    <string name="help_description">The weekly mileage planner is a tool designed to help you plan out your training for the week and make sure you stay on top of it.</string>
+    <string name="help_description">The weekly mileage planner is a tool designed to help you plan out your training for the week and make sure you stay on top of it. Start by inputting a goal mileage for a given day. When you come back to the app on/after that the actual values will automatically be updated.\n\nYou can also find your time elapsed and elevation gained in the bottom left of each day. Want more detail tap on the link in the bottom right of a given day.\n\nIf you\'d like to logout or change your units of measurements, simply tap your strava profile image in the top right of the screen.</string>
     <string name="help_about"><u>Want to read more about this project? Tap here to read the post on Medium.</u></string>
     <string name="help_dismiss">Got it!</string>
+    <string name="settings_save">Save Settings</string>
+    <string name="units_of_measurement">Units of Measurement</string>
+    <string name="kilometers">Kilometers</string>
+    <string name="miles">Miles</string>
+    <string name="settings_title">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="logout_text">Would you like to logout?</string>
 </resources>

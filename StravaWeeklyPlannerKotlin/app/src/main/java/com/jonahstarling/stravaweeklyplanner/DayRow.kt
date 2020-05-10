@@ -20,6 +20,7 @@ import android.widget.EditText
 import android.widget.TextView
 import com.google.firebase.database.*
 import org.jetbrains.annotations.Nullable
+import kotlin.math.roundToInt
 
 
 class DayRow : ConstraintLayout {
@@ -69,25 +70,54 @@ class DayRow : ConstraintLayout {
         }
 
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        var isMeasurementPreferenceMiles = preferences.getBoolean("isMeasurementPreferenceMiles", true)
         val id = preferences.getString("athlete_id", "")
         goalInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                id?.let {
-                    firebaseDatabaseRef.child("athletes").child(id).child(date).setValue(p0?.toString())
-                }
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (goalInput.hasFocus()) {
+                    id?.let {
+                        isMeasurementPreferenceMiles = preferences.getBoolean("isMeasurementPreferenceMiles", true)
+                        var goalInputValue = p0?.toString()
+                        var goalValue = goalInputValue?.toDoubleOrNull()
+                        if (goalValue != null) {
+                            if (isMeasurementPreferenceMiles) {
+                                goalValue *= 1.60934
+                            }
+                            goalInputValue = roundDistance(goalValue)
+                        }
+                        firebaseDatabaseRef.child("athletes").child(id).child(date).setValue(goalInputValue)
+                    }
+                }
             }
         })
+
+        getGoalFromFirebase()
+    }
+
+    private fun getGoalFromFirebase() {
+        val goalInput = findViewById<EditText>(R.id.goal_input)
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val isMeasurementPreferenceMiles = preferences.getBoolean("isMeasurementPreferenceMiles", true)
+        val id = preferences.getString("athlete_id", "")
 
         val goalListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 id?.let {
-                    goalInput.setText(dataSnapshot.child("athletes").child(id).child(date).value.toString())
+                    var goalDistance = dataSnapshot.child("athletes").child(id).child(date).value.toString()
+                    var goalValue = goalDistance.toDoubleOrNull()
+                    if (goalValue != null) {
+                        if (isMeasurementPreferenceMiles) {
+                            goalValue *= 0.621371
+                        }
+                        goalDistance = roundDistance(goalValue)
+                    }
+                    goalInput.setText(goalDistance)
                 }
             }
 
@@ -114,6 +144,7 @@ class DayRow : ConstraintLayout {
                 startActivity(context, browserIntent, null)
             }
         }
+        getGoalFromFirebase()
 
         invalidate()
     }
@@ -126,6 +157,16 @@ class DayRow : ConstraintLayout {
             )!!
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    fun roundDistance(mileageConverted: Double): String {
+        var mileageString = mileageConverted.toString()
+        when {
+            mileageConverted > 100.0 -> mileageString = mileageConverted.roundToInt().toString()
+            mileageConverted > 10.0 -> mileageString = "%.1f".format(mileageConverted)
+            mileageConverted > 0.0 -> mileageString = "%.2f".format(mileageConverted)
+        }
+        return mileageString
     }
 
     inner class InputFocusChangeListener: View.OnFocusChangeListener {
