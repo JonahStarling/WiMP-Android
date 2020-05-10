@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -118,18 +119,73 @@ class MainFragment : Fragment() {
             measurementKilometer.setBackgroundColor(resources.getColor(R.color.colorPrimary, activity?.theme))
             measurementKilometer.setTextColor(Color.WHITE)
         }
+        settingsDialog.visibility = View.VISIBLE
+        val settingsAnimator = ValueAnimator.ofFloat(0.0f, 1.0f)
+        settingsAnimator.duration = 200L
+        settingsAnimator.interpolator = LinearInterpolator()
+        settingsAnimator.addUpdateListener {
+            fadedBackgroundSettings.alpha = (settingsAnimator.animatedValue as Float) * 0.7f
+            settingsProfileImage.alpha = settingsAnimator.animatedValue as Float
+            settingsCardView.alpha = settingsAnimator.animatedValue as Float
+
+            val settingsCardViewParams = settingsCardView.layoutParams as ConstraintLayout.LayoutParams
+            settingsCardViewParams.verticalBias = 1.0f - ((settingsAnimator.animatedValue as Float) / 2.0f)
+            settingsCardView.layoutParams = settingsCardViewParams
+        }
+        settingsAnimator.start()
     }
 
     private fun hideSettingsDialog() {
-        settingsDialog.visibility = View.GONE
+        val settingsAnimator = ValueAnimator.ofFloat(1.0f, 0.0f)
+        settingsAnimator.duration = 200L
+        settingsAnimator.interpolator = LinearInterpolator()
+        settingsAnimator.addUpdateListener {
+            fadedBackgroundSettings.alpha = (settingsAnimator.animatedValue as Float) * 0.7f
+            settingsProfileImage.alpha = settingsAnimator.animatedValue as Float
+            settingsCardView.alpha = settingsAnimator.animatedValue as Float
+
+            val settingsCardViewParams = settingsCardView.layoutParams as ConstraintLayout.LayoutParams
+            settingsCardViewParams.verticalBias = 1.0f - ((settingsAnimator.animatedValue as Float) / 2.0f)
+            settingsCardView.layoutParams = settingsCardViewParams
+            if (settingsAnimator.animatedValue == 0.0f) {
+                settingsDialog.visibility = View.GONE
+            }
+        }
+        settingsAnimator.start()
     }
 
     private fun showHelpDialog() {
         helpDialog.visibility = View.VISIBLE
+        val helpAnimator = ValueAnimator.ofFloat(0.0f, 1.0f)
+        helpAnimator.duration = 200L
+        helpAnimator.interpolator = LinearInterpolator()
+        helpAnimator.addUpdateListener {
+            fadedBackgroundHelp.alpha = (helpAnimator.animatedValue as Float) * 0.7f
+            helpCard.alpha = helpAnimator.animatedValue as Float
+
+            val helpCardParams = helpCard.layoutParams as ConstraintLayout.LayoutParams
+            helpCardParams.verticalBias = 1.0f - ((helpAnimator.animatedValue as Float) / 2.0f)
+            helpCard.layoutParams = helpCardParams
+        }
+        helpAnimator.start()
     }
 
     private fun hideHelpDialog() {
-        helpDialog.visibility = View.GONE
+        val helpAnimator = ValueAnimator.ofFloat(1.0f, 0.0f)
+        helpAnimator.duration = 200L
+        helpAnimator.interpolator = LinearInterpolator()
+        helpAnimator.addUpdateListener {
+            fadedBackgroundHelp.alpha = (helpAnimator.animatedValue as Float) * 0.7f
+            helpCard.alpha = helpAnimator.animatedValue as Float
+
+            val helpCardParams = helpCard.layoutParams as ConstraintLayout.LayoutParams
+            helpCardParams.verticalBias = 1.0f - ((helpAnimator.animatedValue as Float) / 2.0f)
+            helpCard.layoutParams = helpCardParams
+            if (helpAnimator.animatedValue == 0.0f) {
+                helpDialog.visibility = View.GONE
+            }
+        }
+        helpAnimator.start()
     }
 
     private fun navigateToMediumPost() {
