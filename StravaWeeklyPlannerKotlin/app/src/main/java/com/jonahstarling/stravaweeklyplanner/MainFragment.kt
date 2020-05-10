@@ -3,8 +3,8 @@ package com.jonahstarling.stravaweeklyplanner
 import android.animation.ValueAnimator
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.constraint.ConstraintLayout
-import android.support.v4.app.Fragment
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +16,8 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.help_dialog.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.time.LocalDate
@@ -54,7 +56,9 @@ class MainFragment : Fragment() {
             Glide.with(this@MainFragment).load(profile).into(profileImage)
         }
 
-        logoImage.setOnClickListener { logout() }
+        logoImage.setOnClickListener { showHelpDialog() }
+        fadedBackground.setOnClickListener { hideHelpDialog() }
+        dismissHelp.setOnClickListener { hideHelpDialog() }
 
         val mainAnimator = ValueAnimator.ofFloat(0.0f, 1.0f)
         mainAnimator.duration = 500L
@@ -76,6 +80,14 @@ class MainFragment : Fragment() {
         mainAnimator.start()
 
         fetchAthletesActivities(id, accessToken)
+    }
+
+    private fun showHelpDialog() {
+        helpDialog.visibility = View.VISIBLE
+    }
+
+    private fun hideHelpDialog() {
+        helpDialog.visibility = View.GONE
     }
 
     private fun fetchAthletesActivities(id: String, accessToken: String) {

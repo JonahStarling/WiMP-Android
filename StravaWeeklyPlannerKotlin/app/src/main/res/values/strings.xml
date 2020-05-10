@@ -11,4 +11,9 @@
     <string name="_0">0</string>
     <string name="goal">Goal</string>
     <string name="actual">Actual</string>
+
+    <string name="help_title">What\'s going on?</string>
+    <string name="help_description">The weekly mileage planner is a tool designed to help you plan out your training for the week and make sure you stay on top of it.</string>
+    <string name="help_about"><u>Want to read more about this project? Tap here to read the post on Medium.</u></string>
+    <string name="help_dismiss">Got it!</string>
 </resources>
