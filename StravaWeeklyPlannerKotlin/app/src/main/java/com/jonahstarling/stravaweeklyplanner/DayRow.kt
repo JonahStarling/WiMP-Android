@@ -139,13 +139,13 @@ class DayRow : ConstraintLayout {
         statBoxTwo.text = data["statBoxTwo"]
         val activityUrl = data["activityUrl"]
         if (activityUrl != null && activityUrl != "") {
-            statBoxThree.visibility = View.VISIBLE
+            statBoxThree.text = resources.getText(R.string.view_on_strava)
             statBoxThree.setOnClickListener {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(activityUrl))
                 startActivity(context, browserIntent, null)
             }
         } else {
-            statBoxThree.visibility = View.GONE
+            statBoxThree.text = resources.getText(R.string.no_activity_recorded)
         }
         getGoalFromFirebase()
 

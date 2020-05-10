@@ -146,15 +146,13 @@
             android:textColor="@color/grey"
             android:textStyle="italic"
             android:textAlignment="center"
-            android:text="@string/view"
-            android:visibility="gone"
+            android:text="@string/no_activity_recorded"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/stat_box_two"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/goal_input"
-            app:layout_constraintHorizontal_bias="0.0"
-            tools:visibility="visible"/>
+            app:layout_constraintHorizontal_bias="0.0"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
