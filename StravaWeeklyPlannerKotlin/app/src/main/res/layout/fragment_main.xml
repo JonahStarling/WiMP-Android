@@ -65,7 +65,7 @@
                     app:layout_constraintVertical_bias="0.0"/>
 
             <com.jonahstarling.stravaweeklyplanner.DayRow
-                    android:id="@+id/monday_row"
+                    android:id="@+id/mondayRow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -81,7 +81,7 @@
                     app:layout_constraintVertical_bias="0.1"/>
 
             <com.jonahstarling.stravaweeklyplanner.DayRow
-                    android:id="@+id/tuesday_row"
+                    android:id="@+id/tuesdayRow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -93,11 +93,11 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/monday_row"
+                    app:layout_constraintTop_toBottomOf="@id/mondayRow"
                     app:layout_constraintVertical_bias="0.0"/>
 
             <com.jonahstarling.stravaweeklyplanner.DayRow
-                    android:id="@+id/wednesday_row"
+                    android:id="@+id/wednesdayRow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -109,11 +109,11 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tuesday_row"
+                    app:layout_constraintTop_toBottomOf="@id/tuesdayRow"
                     app:layout_constraintVertical_bias="0.0"/>
 
             <com.jonahstarling.stravaweeklyplanner.DayRow
-                    android:id="@+id/thursday_row"
+                    android:id="@+id/thursdayRow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -125,11 +125,11 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/wednesday_row"
+                    app:layout_constraintTop_toBottomOf="@id/wednesdayRow"
                     app:layout_constraintVertical_bias="0.0"/>
 
             <com.jonahstarling.stravaweeklyplanner.DayRow
-                    android:id="@+id/friday_row"
+                    android:id="@+id/fridayRow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -141,11 +141,11 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/thursday_row"
+                    app:layout_constraintTop_toBottomOf="@id/thursdayRow"
                     app:layout_constraintVertical_bias="0.0"/>
 
             <com.jonahstarling.stravaweeklyplanner.DayRow
-                    android:id="@+id/saturday_row"
+                    android:id="@+id/saturdayRow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -157,11 +157,11 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/friday_row"
+                    app:layout_constraintTop_toBottomOf="@id/fridayRow"
                     app:layout_constraintVertical_bias="0.0"/>
 
             <com.jonahstarling.stravaweeklyplanner.DayRow
-                    android:id="@+id/sunday_row"
+                    android:id="@+id/sundayRow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -173,7 +173,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/saturday_row"
+                    app:layout_constraintTop_toBottomOf="@id/saturdayRow"
                     app:layout_constraintVertical_bias="0.0"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

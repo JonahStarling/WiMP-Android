@@ -47,16 +47,6 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val logoImage = view.findViewById<ImageView>(R.id.logo)
-        val profileImage = view.findViewById<CircleImageView>(R.id.profileImage)
-        val monday = view.findViewById<DayRow>(R.id.monday_row)
-        val tuesday = view.findViewById<DayRow>(R.id.tuesday_row)
-        val wednesday = view.findViewById<DayRow>(R.id.wednesday_row)
-        val thursday = view.findViewById<DayRow>(R.id.thursday_row)
-        val friday = view.findViewById<DayRow>(R.id.friday_row)
-        val saturday = view.findViewById<DayRow>(R.id.saturday_row)
-        val sunday = view.findViewById<DayRow>(R.id.sunday_row)
-
         preferences = PreferenceManager.getDefaultSharedPreferences(context)
 
         profile = preferences?.getString("profile", "")
@@ -67,7 +57,7 @@ class MainFragment : Fragment() {
             Glide.with(this@MainFragment).load(profile).into(profileImage)
         }
 
-        logoImage.setOnClickListener { showHelpDialog() }
+        logo.setOnClickListener { showHelpDialog() }
         fadedBackgroundHelp.setOnClickListener { hideHelpDialog() }
         dismissHelp.setOnClickListener { hideHelpDialog() }
         helpAbout.setOnClickListener { navigateToMediumPost() }
@@ -84,17 +74,17 @@ class MainFragment : Fragment() {
         mainAnimator.startDelay = 500L
         mainAnimator.interpolator = LinearInterpolator()
         mainAnimator.addUpdateListener {
-            monday.alpha = mainAnimator.animatedValue as Float
-            tuesday.alpha = mainAnimator.animatedValue as Float
-            wednesday.alpha = mainAnimator.animatedValue as Float
-            thursday.alpha = mainAnimator.animatedValue as Float
-            friday.alpha = mainAnimator.animatedValue as Float
-            saturday.alpha = mainAnimator.animatedValue as Float
-            sunday.alpha = mainAnimator.animatedValue as Float
+            mondayRow.alpha = mainAnimator.animatedValue as Float
+            tuesdayRow.alpha = mainAnimator.animatedValue as Float
+            wednesdayRow.alpha = mainAnimator.animatedValue as Float
+            thursdayRow.alpha = mainAnimator.animatedValue as Float
+            fridayRow.alpha = mainAnimator.animatedValue as Float
+            saturdayRow.alpha = mainAnimator.animatedValue as Float
+            sundayRow.alpha = mainAnimator.animatedValue as Float
 
-            val mondayParams = monday.layoutParams as ConstraintLayout.LayoutParams
+            val mondayParams = mondayRow.layoutParams as ConstraintLayout.LayoutParams
             mondayParams.verticalBias = 0.1f - ((mainAnimator.animatedValue as Float) / 10.0f)
-            monday.layoutParams = mondayParams
+            mondayRow.layoutParams = mondayParams
         }
         mainAnimator.start()
 
@@ -287,43 +277,43 @@ class MainFragment : Fragment() {
         // Monday
         thisWeeksActivities["Monday"]?.let {
             val dailyTotals = calculateDailyTotals(it)
-            view?.findViewById<DayRow>(R.id.monday_row)?.setDaysActivityData(dailyTotals)
+            mondayRow?.setDaysActivityData(dailyTotals)
         }
 
         // Tuesday
         thisWeeksActivities["Tuesday"]?.let {
             val dailyTotals = calculateDailyTotals(it)
-            view?.findViewById<DayRow>(R.id.tuesday_row)?.setDaysActivityData(dailyTotals)
+            tuesdayRow?.setDaysActivityData(dailyTotals)
         }
 
         // Wednesday
         thisWeeksActivities["Wednesday"]?.let {
             val dailyTotals = calculateDailyTotals(it)
-            view?.findViewById<DayRow>(R.id.wednesday_row)?.setDaysActivityData(dailyTotals)
+            wednesdayRow?.setDaysActivityData(dailyTotals)
         }
 
         // Thursday
         thisWeeksActivities["Thursday"]?.let {
             val dailyTotals = calculateDailyTotals(it)
-            view?.findViewById<DayRow>(R.id.thursday_row)?.setDaysActivityData(dailyTotals)
+            thursdayRow?.setDaysActivityData(dailyTotals)
         }
 
         // Friday
         thisWeeksActivities["Friday"]?.let {
             val dailyTotals = calculateDailyTotals(it)
-            view?.findViewById<DayRow>(R.id.friday_row)?.setDaysActivityData(dailyTotals)
+            fridayRow?.setDaysActivityData(dailyTotals)
         }
 
         // Saturday
         thisWeeksActivities["Saturday"]?.let {
             val dailyTotals = calculateDailyTotals(it)
-            view?.findViewById<DayRow>(R.id.saturday_row)?.setDaysActivityData(dailyTotals)
+            saturdayRow?.setDaysActivityData(dailyTotals)
         }
 
         // Sunday
         thisWeeksActivities["Sunday"]?.let {
             val dailyTotals = calculateDailyTotals(it)
-            view?.findViewById<DayRow>(R.id.sunday_row)?.setDaysActivityData(dailyTotals)
+            sundayRow?.setDaysActivityData(dailyTotals)
         }
     }
 
