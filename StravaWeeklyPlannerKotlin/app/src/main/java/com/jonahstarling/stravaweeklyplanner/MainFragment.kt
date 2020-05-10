@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -189,8 +188,7 @@ class MainFragment : Fragment() {
     }
 
     private fun navigateToMediumPost() {
-        // TODO: Update with this app's Medium post friend link
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://medium.com/@starling.jonah/artistic-style-transfer-with-tensorflow-lite-on-android-943af9ca28d8?source=friends_link&sk=8c83cf644c459cdac87242425cc24639"))
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://medium.com/@starling.jonah/a-weekly-mileage-planner-powered-by-strava-4f76ca9cae66?source=friends_link&sk=b1ae0119516aede21fca8569716e0eca"))
         startActivity(browserIntent)
     }
 
@@ -346,7 +344,6 @@ class MainFragment : Fragment() {
                 climb += activity.getDouble("total_elevation_gain")
             }
         }
-
 
         var mileageString = "0"
         var climbString = "${climb.roundToInt()}m"
