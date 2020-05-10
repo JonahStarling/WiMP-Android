@@ -349,11 +349,13 @@ class MainFragment : Fragment() {
 
 
         var mileageString = "0"
+        var climbString = "${climb.roundToInt()}m"
         var mileageConverted: Double = mileage / 1000.0
         val isMeasurementPreferenceMiles = preferences?.getBoolean("isMeasurementPreferenceMiles", true) ?: true
         if (isMeasurementPreferenceMiles) {
             mileageConverted *= 0.621371
             climb *= 3.28084
+            climbString = "${climb.roundToInt()}ft"
         }
         when {
             mileageConverted > 100.0 -> mileageString = mileageConverted.roundToInt().toString()
@@ -363,7 +365,7 @@ class MainFragment : Fragment() {
 
         dailyTotals["actualMileage"] = mileageString
         dailyTotals["statBoxOne"] = "${time / 60}m ${time % 60}s"
-        dailyTotals["statBoxTwo"] = "${climb.roundToInt()}m"
+        dailyTotals["statBoxTwo"] = climbString
         dailyTotals["activityUrl"] = activityUrl
 
         return dailyTotals
