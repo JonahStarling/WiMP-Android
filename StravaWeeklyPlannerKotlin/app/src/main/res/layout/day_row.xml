@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/day_row_cl"
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/day_row_cl"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:padding="4dp">
+        android:padding="4dp"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Day Title -->
     <TextView
@@ -112,6 +112,7 @@
             android:textColor="@color/grey"
             android:textStyle="italic"
             android:textAlignment="center"
+            android:text="@string/default_time_stat"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent="0.25"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -128,6 +129,7 @@
             android:textColor="@color/grey"
             android:textStyle="italic"
             android:textAlignment="center"
+            android:text="@string/default_climb_stat"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent="0.25"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -145,12 +147,14 @@
             android:textStyle="italic"
             android:textAlignment="center"
             android:text="@string/view"
+            android:visibility="gone"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/stat_box_two"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/goal_input"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintHorizontal_bias="0.0"
+            tools:visibility="visible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

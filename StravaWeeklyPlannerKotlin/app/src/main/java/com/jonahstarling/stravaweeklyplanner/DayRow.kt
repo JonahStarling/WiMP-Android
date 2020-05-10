@@ -137,12 +137,15 @@ class DayRow : ConstraintLayout {
         actualMileage.setText(data["actualMileage"])
         statBoxOne.text = data["statBoxOne"]
         statBoxTwo.text = data["statBoxTwo"]
-        statBoxThree.setOnClickListener {
-            val activityUrl = data["activityUrl"]
-            if (activityUrl != null && activityUrl != "") {
+        val activityUrl = data["activityUrl"]
+        if (activityUrl != null && activityUrl != "") {
+            statBoxThree.visibility = View.VISIBLE
+            statBoxThree.setOnClickListener {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(activityUrl))
                 startActivity(context, browserIntent, null)
             }
+        } else {
+            statBoxThree.visibility = View.GONE
         }
         getGoalFromFirebase()
 

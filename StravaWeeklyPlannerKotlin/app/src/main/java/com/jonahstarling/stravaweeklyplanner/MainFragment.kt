@@ -363,7 +363,7 @@ class MainFragment : Fragment() {
 
         dailyTotals["actualMileage"] = mileageString
         dailyTotals["statBoxOne"] = "${time / 60}m ${time % 60}s"
-        dailyTotals["statBoxTwo"] = "${climb}m"
+        dailyTotals["statBoxTwo"] = "${climb.roundToInt()}m"
         dailyTotals["activityUrl"] = activityUrl
 
         return dailyTotals
