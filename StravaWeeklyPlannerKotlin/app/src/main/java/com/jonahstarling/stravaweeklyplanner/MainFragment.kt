@@ -36,7 +36,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val logoImage = view.findViewById<ImageView>(R.id.logo)
-        val profileImage = view.findViewById<CircleImageView>(R.id.profile_image)
+        val profileImage = view.findViewById<CircleImageView>(R.id.profileImage)
         val monday = view.findViewById<DayRow>(R.id.monday_row)
         val tuesday = view.findViewById<DayRow>(R.id.tuesday_row)
         val wednesday = view.findViewById<DayRow>(R.id.wednesday_row)

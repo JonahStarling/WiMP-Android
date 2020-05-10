@@ -11,7 +11,7 @@
         android:background="@color/colorPrimary">
 
     <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
+            android:id="@+id/profileImage"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:src="@drawable/swp_logo_small"
@@ -38,7 +38,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_image"
+            app:layout_constraintTop_toBottomOf="@id/profileImage"
             app:layout_constraintVertical_bias="0.1"/>
 
     <TextView

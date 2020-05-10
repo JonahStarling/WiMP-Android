@@ -21,7 +21,7 @@ class OnboardingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val profileImage = view.findViewById<CircleImageView>(R.id.profile_image)
+        val profileImage = view.findViewById<CircleImageView>(R.id.profileImage)
         val onboardingText = view.findViewById<TextView>(R.id.onboarding_text)
         val tapToStartText = view.findViewById<TextView>(R.id.tap_to_start)
 
