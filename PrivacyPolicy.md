@@ -1,4 +1,4 @@
-Privacy Policy
+**Privacy Policy**
 
 Jonah Starling built the Jonah's Weekly Mileage Planner app as a Free app. This SERVICE is provided by Jonah Starling at no cost and is intended for use as is.
 
@@ -8,7 +8,7 @@ If you choose to use my Service, then you agree to the collection and use of inf
 
 The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at Pastiche unless otherwise defined in this Privacy Policy.
 
-Information Collection and Use
+**Information Collection and Use**
 
 The information that I request will be retained on your device and some of it will be retained on a server.
 
@@ -18,28 +18,28 @@ The app does use third party services that may collect information used to ident
 
 Link to privacy policy of third party service providers used by the app
 
-Google Play Services
-Strava
-Firebase
+*   [Google Play Services](https://www.google.com/policies/privacy/)
+*   [Strava](https://www.strava.com/legal/privacy)
+*   [Firebase](https://firebase.google.com/support/privacy)
 
-Log Data
+**Log Data**
 
 I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.
 
-Links to Other Sites
+**Links to Other Sites**
 
 This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
 
-Children’s Privacy
+**Children’s Privacy**
 
 These Services do not address anyone under the age of 13.
 
-Changes to This Privacy Policy
+**Changes to This Privacy Policy**
 
 I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page.
 
 This policy is effective as of 2020-05-06
 
-Contact Us
+**Contact Us**
 
 If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at starling.jonah@gmail.com.
